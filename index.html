@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peddy</title>
+    <!-- Tailwind + DaisyUI installation -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome link -->
+    <script src="https://kit.fontawesome.com/b4570e01d2.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="images/logo.webp" type="image/x-icon">
+    <!-- Google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        .font-lato{
+            font-family: "Lato", sans-serif;
+        }
+    </style>
+    <style>
+        /* Spinner styles */
+        #spinner {
+          display: none;
+          width: 40px;
+          height: 40px;
+          border: 4px solid rgba(0, 0, 0, 0.1);
+          border-top: 4px solid #000;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin: 20px auto;
+        }
+  
+        /* Spinner animation */
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'green': 'rgb(14, 122, 129)',
+                'icon-border': 'rgba(14, 122, 129, 0.2)',
+                'footer-btn':'rgb(14, 122, 129)',
+                'cancel-btn':'rgba(14, 122, 129, 0.1)',
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="font-lato">
+    <header>
+        <nav class="md:container mx-auto px-2 md:py-4">
+            <div class="navbar">
+                <div class="navbar-start">
+                    <a class="text-xl font-bold flex gap-2 items-center cursor-pointer">
+                        <img src="images/logo.webp" alt="">
+                        <p class="text-xl lg:text-3xl font-extrabold">Peddy</p>
+                    </a>
+                </div>
+        
+                <!-- Mobile view dropdown menu -->
+                <div class="navbar-end md:hidden">
+                    <div class="dropdown dropdown-end">
+                        <div tabindex="0" role="button" class="btn btn-ghost flex items-center justify-center text-3xl">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                class="inline-block h-5 w-5 stroke-current">
+                                <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </div>
+                        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            <li><a>Home</a></li>
+                            <li><a>Shop</a></li>
+                            <li><a>Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="navbar-center hidden md:flex">
+                    <ul class="menu menu-horizontal px-1 font-semibold text-nav-text">
+                        <li class=" text-gray-500 font-bold text-md"><a>Home</a></li>
+                        <li class=" text-gray-500 font-bold text-md"><a>Shop</a></li>
+                        <li class=" text-gray-500 font-bold text-md"><a>Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="navbar-end hidden md:flex gap-3">
+                    <button class="btn bg-white btn-circle border border-icon-border">
+                        <img src="https://img.icons8.com/?size=48&id=fJ7hcfUGpKG7&format=png" class="w-[30px] h-[30px] object-cover">
+                    </button>
+                </div>
+            </div>
+        </nav> 
+        <div class="md:container mx-auto flex flex-col items-center justify-center text-center space-y-4 mt-4 md:mt-10">
+            <h4 class="font-semibold md:text-xl text-gray-500">Bringing Families Together ❤️‍🔥</h4>
+            <h1 class="font-bold text-3xl md:text-5xl">Your Path to Adoption <br> Starts Here</h1>
+            <p class="text-gray-700 text-xs md:text-[1rem] font-semibold w-1/2 leading-5">Welcome to Peddy, the place where devoted animals go to live forever! We can assist you in finding the ideal friend, whether your goal is to adopt a new best friend or give a rescued animal a second opportunity at life.</p>
+            <button id="View" class="btn bg-green text-white">View More</button>
+            <img src="images/pet.webp" alt="">
+        </div>
+    </header>
+    <main>
+        <div id="best-friend">
+            <div class="md:container mx-auto flex flex-col items-center justify-center text-center my-4 md:my-10 space-y-3">
+                <h1 class="font-bold text-3xl">Adopt  Your  Best Friend</h1>
+                <p class="w-1/2 text-gray-500 font-medium text-xs md:text-[1rem] leading-5">Getting a pet is like getting a faithful friend who will bring happiness and unwavering affection into your life as their best buddy. Could it be you?</p>
+            </div>
+        <!-- Cat, Dog, Rabbit & bird button -->
+            <div id="categories" class="md:container mx-auto flex gap-3 md:gap-10 items-center justify-center px-2"></div>
+        <!-- sort div -->
+            <div id="create-sort"></div>
+        <!-- spinner -->
+            <div id="spinner"></div>
+        </div>
+        <section class="md:container mx-auto flex flex-col md:flex-row gap-5 px-4 md:mb-10">
+            <div id="pets" class="grid grid-cols-1 lg:grid-cols-3 auto-cols-max gap-5 p-4 border border-gray-200 rounded-xl md:w-9/12 h-fit">
+            </div>
+            <div id="add-pets" class="grid grid-cols-1 lg:grid-cols-2 auto-rows-min gap-4 p-4 mb-4 md:mb-0 border border-gray-200 rounded-xl md:w-3/12">
+            </div>
+        </section>
+        <!-- details modal -->
+        <button id="showModalData" class="btn hidden" onclick="customModal.showModal()">
+            open modal
+          </button>
+          <dialog id="customModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+              <div id="modal-content">
+      
+              </div>
+              <div class="">
+                <form method="dialog">
+                  <!-- if there is a button in form, it will close the modal -->
+                  <button class="btn w-full my-4 bg-cancel-btn border border-icon-border">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+          <!-- adopt modal -->
+          <button id="showModalData" class="btn hidden" onclick="customModal.showModal()">
+            open modal
+          </button>
+          <dialog id="customModal-2" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+              <div id="modal-content-2">
+      
+              </div>
+              <div class="flex justify-center">
+                <span>
+                    <p id="countdown-display" class="text-5xl font-extrabold text-footer-btn pt-2">0</p>
+                </span>
+              </div>
+            </div>
+          </dialog> 
+    </main>
+    <footer>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 bg-black text-white p-4 md:p-10 lg:p-20">
+            <div class="space-y-5 p-4 md:px-12">
+                <div class="font-bold flex gap-3 items-center justify-start">
+                    <img src="images/logo.webp" alt="">
+                    <p class="text-xl lg:text-3xl font-extrabold cursor-pointer">Peddy</p>
+                </div>
+                <p class="text-gray-500">
+                    Location: av. Washington 165, NY CA 
+                    <br>54003
+                    <br>Phone: +31 85 964 47 25
+                    <br>Email: info@peddy.com
+                    <br>Openings hours: 9.00 AM - 5.00 PM
+                </p>
+                <div class="flex gap-4">
+                    <img src="https://img.icons8.com/?size=48&id=118497&format=png" alt="">
+                    <img src="images/icons8-twitterx-32.png" class="object-cover" alt="">
+                    <img src="https://img.icons8.com/?size=48&id=19318&format=png" alt="">
+                    <img src="https://img.icons8.com/?size=48&id=32323&format=png" alt="">
+                </div>
+            </div>
+            <div class="space-y-4 p-5 md:px-12">
+                <h2 class="text-xl font-bold">Useful links</h2>
+                <p class="text-gray-500 font-semibold cursor-pointer">Home</p>
+                <p class="text-gray-500 font-semibold cursor-pointer">About Us</p>
+                <p  class="text-gray-500 font-semibold cursor-pointer">Animals</p>
+                <p class="text-gray-500 font-semibold cursor-pointer">Foundation</p>
+                <p class="text-gray-500 font-semibold cursor-pointer">Contact</p>
+            </div>
+            <div class="space-y-5 p-5 md:px-12">
+                <h1>Drop a Message</h1>
+                <label class="input input-bordered flex items-center gap-2 w-full">
+                    <input type="text" class="grow" placeholder="Enter your email" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      class="h-4 w-4 opacity-70">
+                      <path
+                        fill-rule="evenodd"
+                        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </label>
+                  <button class="btn bg-footer-btn text-white w-full cursor-pointer">Subscribe</button>
+            </div>
+        </div>
+    </footer>
+    <script src="js/pet.js"></script>
+</body>
+</html>
